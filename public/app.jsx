@@ -3,6 +3,7 @@ var Greeter = React.createClass({
     return (
       <div>
         <h1>Meow 🐈</h1>
+        <p>🐭🐈😸</p>
       </div>
     );
   }
