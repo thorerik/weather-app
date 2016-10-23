@@ -59,8 +59,8 @@
 
 	var Main = __webpack_require__(216);
 	var Weather = __webpack_require__(218);
-	var About = __webpack_require__(219);
-	var Examples = __webpack_require__(220);
+	var About = __webpack_require__(221);
+	var Examples = __webpack_require__(222);
 
 	ReactDOM.render(React.createElement(
 	  Router,
@@ -24931,13 +24931,29 @@
 
 	var React = __webpack_require__(1);
 
-	var WeatherForm = __webpack_require__(221);
-	var WeatherMessage = __webpack_require__(222);
+	var WeatherForm = __webpack_require__(219);
+	var WeatherMessage = __webpack_require__(220);
 
 	var Weater = React.createClass({
 	  displayName: 'Weater',
 
+	  getInitialState: function getInitialState() {
+	    return {
+	      location: "Woof",
+	      temp: 42
+	    };
+	  },
+	  handleSearch: function handleSearch(location) {
+	    this.setState({
+	      location: location,
+	      temp: 23
+	    });
+	  },
 	  render: function render() {
+	    var _state = this.state;
+	    var temp = _state.temp;
+	    var location = _state.location;
+
 	    return React.createElement(
 	      'div',
 	      null,
@@ -24946,8 +24962,8 @@
 	        null,
 	        'Weather component'
 	      ),
-	      React.createElement(WeatherForm, null),
-	      React.createElement(WeatherMessage, null)
+	      React.createElement(WeatherForm, { onSearch: this.handleSearch }),
+	      React.createElement(WeatherMessage, { location: location, temp: temp })
 	    );
 	  }
 	});
@@ -24957,48 +24973,6 @@
 /* 219 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
-
-	var React = __webpack_require__(1);
-
-	var About = React.createClass({
-	  displayName: 'About',
-
-	  render: function render() {
-	    return React.createElement(
-	      'h3',
-	      null,
-	      'About component'
-	    );
-	  }
-	});
-	module.exports = About;
-
-/***/ },
-/* 220 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var React = __webpack_require__(1);
-
-	var Examples = React.createClass({
-	  displayName: 'Examples',
-
-	  render: function render() {
-	    return React.createElement(
-	      'h3',
-	      null,
-	      'Examples component'
-	    );
-	  }
-	});
-	module.exports = Examples;
-
-/***/ },
-/* 221 */
-/***/ function(module, exports, __webpack_require__) {
-
 	"use strict";
 
 	var React = __webpack_require__(1);
@@ -25006,13 +24980,22 @@
 	var WeaterForm = React.createClass({
 	  displayName: "WeaterForm",
 
+	  onFormSubmit: function onFormSubmit(e) {
+	    e.preventDefault();
+
+	    var location = this.refs.location.value;
+	    if (location.length > 0) {
+	      this.refs.location.value = "";
+	      this.props.onSearch(location);
+	    }
+	  },
 	  render: function render() {
 	    return React.createElement(
 	      "div",
 	      null,
 	      React.createElement(
 	        "form",
-	        null,
+	        { onSubmit: this.onFormSubmit },
 	        React.createElement(
 	          "div",
 	          null,
@@ -25034,7 +25017,7 @@
 	module.exports = WeaterForm;
 
 /***/ },
-/* 222 */
+/* 220 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25045,14 +25028,63 @@
 	  displayName: 'WeaterMessage',
 
 	  render: function render() {
+	    var _props = this.props;
+	    var temp = _props.temp;
+	    var location = _props.location;
+
 	    return React.createElement(
 	      'h3',
 	      null,
-	      'WeatherMessage component'
+	      'It is ',
+	      temp,
+	      ' degrees in ',
+	      location
 	    );
 	  }
 	});
 	module.exports = WeaterMessage;
+
+/***/ },
+/* 221 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1);
+
+	var About = React.createClass({
+	  displayName: 'About',
+
+	  render: function render() {
+	    return React.createElement(
+	      'h3',
+	      null,
+	      'About component'
+	    );
+	  }
+	});
+	module.exports = About;
+
+/***/ },
+/* 222 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1);
+
+	var Examples = React.createClass({
+	  displayName: 'Examples',
+
+	  render: function render() {
+	    return React.createElement(
+	      'h3',
+	      null,
+	      'Examples component'
+	    );
+	  }
+	});
+	module.exports = Examples;
 
 /***/ }
 /******/ ]);
