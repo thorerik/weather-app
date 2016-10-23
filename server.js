@@ -3,9 +3,10 @@ var express = require('express');
 
 // create our app
 var app = express();
+const port = process.env.PORT || 3000;
 
 app.use(express.static('public'));
 
-app.listen(3000, function () {
-  console.log('Server is up at :3000');
+app.listen(port, function () {
+  console.log(`Server is up at :${port}`);
 });
