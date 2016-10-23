@@ -9,6 +9,9 @@ var Examples = () => {
       <ol>
         <li><Link to="/?location=Oslo">Oslo, Norway</Link></li>
         <li><Link to="/?location=Asdakjsd">Asdakjsd, Dafuqistan</Link></li>
+        <li><Link to="/?location=Sun">Sun, Solarsystem</Link></li>
+        <li><Link to="/?location=Moon">Moon, Solarsystem</Link></li>
+        <li><Link to="/?location=Meow">Meow, Dafuqistan</Link></li>
       </ol>
     </div>
   );
