@@ -2,7 +2,10 @@ var React = require('react');
 
 var About = () => {
   return (
-    <h3>About component</h3>
+    <div>
+      <h3>About</h3>
+      <p>Tuxy is learning react and shit.</p>
+    </div>
   );
 };
 
